@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Binds from '../components/Binds.astro';
+import Loadout from '../components/Loadout.astro';
+import Stats from '../components/Stats.astro';
+import Install from '../components/Install.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base
+  title="auto-clicker: click, record, replay"
+  description="An auto clicker with macro record and playback that lives in your tray. Its hotkeys work inside fullscreen games, and it costs nothing while it waits."
+>
+  <Nav />
+  <main>
+    <Hero />
+    <Binds />
+    <Loadout />
+    <Stats />
+    <Install />
+  </main>
+  <Footer />
+</Base>

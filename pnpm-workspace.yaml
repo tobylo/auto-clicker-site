@@ -1,0 +1,12 @@
+# Supply-chain settings. AGENTS.md says why; never loosen them to make an install pass.
+
+# Dependencies run no install or build scripts unless listed here as true; an
+# install fails on any unlisted one (strictDepBuilds, on by default).
+allowBuilds: {}
+
+# Install no release younger than a week (minutes), and fail rather than fall
+# back when only a younger one would satisfy a range.
+minimumReleaseAge: 10080
+
+# Fail when a package's publishing trust drops below an earlier release's.
+trustPolicy: no-downgrade

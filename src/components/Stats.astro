@@ -1,0 +1,113 @@
+---
+import { figures } from '../data/facts';
+---
+
+<section class="wrap stats" id="stats" aria-labelledby="stats-title">
+  <div class="intro">
+    <p class="label">// 03 — Stats</p>
+    <h2 id="stats-title">Light enough to forget it's there.</h2>
+  </div>
+  <dl>
+    {
+      figures.map((figure) => (
+        <div class="row" title={figure.measured}>
+          <dt>{figure.label}</dt>
+          <dd class:list={{ accent: figure.unit === '' }}>
+            {figure.value}
+            {figure.unit && <span class="unit"> {figure.unit}</span>}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>
+
+<style>
+  .stats {
+    display: flex;
+    gap: 96px;
+    padding-top: var(--section);
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 400px;
+    flex-shrink: 0;
+  }
+
+  h2 {
+    font-size: 44px;
+    line-height: 1.14;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--text);
+  }
+
+  dl {
+    flex: 1;
+    margin: 0;
+    border-block: 2px solid var(--green);
+  }
+
+  .row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: 18px;
+  }
+
+  .row + .row {
+    border-top: 1px solid var(--line);
+  }
+
+  dt {
+    font-size: 16px;
+    color: var(--text-body);
+  }
+
+  dd {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  dd.accent {
+    color: var(--green);
+  }
+
+  @media (max-width: 1080px) {
+    .stats {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .intro {
+      width: auto;
+      max-width: 520px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    h2 {
+      font-size: 32px;
+    }
+
+    .row {
+      padding-block: 14px;
+    }
+
+    dt {
+      font-size: 14px;
+    }
+
+    dd {
+      font-size: 26px;
+    }
+  }
+</style>

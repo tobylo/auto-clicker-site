@@ -1,0 +1,22 @@
+---
+import { links, platforms } from '../data/facts';
+import InstallTabs from './InstallTabs.svelte';
+---
+
+<section class="wrap install" id="install" aria-labelledby="install-title">
+  <h2 class="label" id="install-title">// 04 — Spawn</h2>
+  <InstallTabs client:visible {platforms} repo={links.repo} />
+</section>
+
+<style>
+  .install {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-block: var(--section);
+  }
+
+  h2.label {
+    font-weight: 400;
+  }
+</style>

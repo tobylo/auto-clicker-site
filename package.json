@@ -1,0 +1,17 @@
+{
+  "name": "auto-clicker-site",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.21.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/svelte": "9.1.6",
+    "@fontsource-variable/jetbrains-mono": "5.3.0",
+    "astro": "7.4.12",
+    "svelte": "5.57.3"
+  }
+}
