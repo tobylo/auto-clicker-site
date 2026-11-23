@@ -1,0 +1,115 @@
+---
+// Taken from auto-clicker at d668d31 on niri 26.04, 2026-11-23, with sample
+// recordings. Retake them when the windows or the menu change.
+import { Image } from 'astro:assets';
+import clicker from '../assets/screens/settings-clicker.png';
+import playback from '../assets/screens/settings-playback.png';
+import tray from '../assets/screens/tray-menu.png';
+
+const shots = [
+  { src: clicker, alt: 'The settings window: action, interval, jitter, button, where to click, and the on-screen options.', caption: 'Settings · clicker' },
+  { src: playback, alt: 'The settings window’s playback tab: speed, plays, and a list of saved recordings with one selected.', caption: 'Settings · recordings' },
+];
+---
+
+<section class="wrap screens" id="screens" aria-labelledby="screens-title">
+  <h2 class="label" id="screens-title">// 02 — Screens</h2>
+  <div class="row">
+    {
+      shots.map((shot) => (
+        <figure class="window">
+          <a href={shot.src.src}>
+            <Image src={shot.src} alt={shot.alt} widths={[410, 820]} sizes="(max-width: 720px) 100vw, 40vw" />
+          </a>
+          <figcaption>{shot.caption}</figcaption>
+        </figure>
+      ))
+    }
+    <figure class="tray">
+      <Image src={tray} alt="The tray menu: Start clicking, Record, Play, Settings and Quit." />
+      <figcaption>Tray menu</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .screens {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-top: var(--section);
+  }
+
+  h2.label {
+    font-weight: 400;
+  }
+
+  .row {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  figure {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+  }
+
+  .window {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .tray {
+    flex-shrink: 0;
+  }
+
+  a:hover img {
+    border-color: var(--green);
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line-strong);
+  }
+
+  .tray img {
+    width: 280px;
+  }
+
+  figcaption {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  @media (max-width: 1080px) {
+    .row {
+      flex-wrap: wrap;
+    }
+
+    .window {
+      flex-basis: calc(50% - 12px);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .screens {
+      gap: 24px;
+    }
+
+    .row {
+      flex-direction: column;
+    }
+
+    .window {
+      flex-basis: auto;
+      width: 100%;
+    }
+  }
+</style>
