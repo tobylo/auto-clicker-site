@@ -1,0 +1,77 @@
+---
+import { links } from '../data/facts';
+---
+
+<header class="nav">
+  <div class="wrap row">
+    <a class="brand" href="#top" aria-label="auto-clicker, back to top">
+      <span class="dot" aria-hidden="true"></span>
+      <span>AUTO-CLICKER</span>
+    </a>
+    <nav aria-label="Sections">
+      <a class="section" href="#binds">Hotkeys</a>
+      <a class="section" href="#screens">Screens</a>
+      <a class="section" href="#loadout">Features</a>
+      <a class="section" href="#install">Install</a>
+      <a class="section" href={links.guide}>Docs</a>
+      <a class="github" href={links.repo}>GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding-block: 24px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--green);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    background: var(--green);
+    box-shadow: 0 0 12px var(--green);
+  }
+
+  nav {
+    display: flex;
+    gap: clamp(20px, 3vw, 40px);
+  }
+
+  nav a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--text-body);
+  }
+
+  nav a:hover {
+    color: var(--green);
+  }
+
+  .github {
+    color: var(--green);
+  }
+
+  @media (max-width: 720px) {
+    .section {
+      display: none;
+    }
+  }
+</style>

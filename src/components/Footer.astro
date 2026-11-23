@@ -1,0 +1,39 @@
+---
+import { links } from '../data/facts';
+---
+
+<footer>
+  <div class="wrap row">
+    <p>MIT or Apache-2.0 · No telemetry · No network</p>
+    <a href={links.repo}>github.com/tobylo/auto-clicker</a>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--line);
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding-block: 28px 40px;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--text-faint);
+  }
+
+  p {
+    text-transform: uppercase;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--green);
+  }
+</style>
