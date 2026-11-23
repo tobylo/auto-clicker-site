@@ -1,5 +1,5 @@
 ---
-import { hotkeys } from '../data/facts';
+import { hotkeyModifiers, hotkeys } from '../data/facts';
 ---
 
 <section class="band" id="binds" aria-labelledby="binds-title">
@@ -7,13 +7,13 @@ import { hotkeys } from '../data/facts';
     <div class="intro">
       <p class="tag">// 01 — Binds</p>
       <h2 id="binds-title">Three <br />keys.</h2>
-      <p class="hint">Hold Ctrl+Shift. Works in fullscreen games, and every key can be rebound.</p>
+      <p class="hint">Hold {hotkeyModifiers}. Works in fullscreen games, and every key can be rebound.</p>
     </div>
     <ul class="tiles">
       {
         hotkeys.map((hotkey) => (
           <li class="tile">
-            <kbd aria-label={`Ctrl+Shift+${hotkey.key}`}>{hotkey.key}</kbd>
+            <kbd aria-label={`${hotkeyModifiers}+${hotkey.key}`}>{hotkey.key}</kbd>
             <div>
               <h3>{hotkey.name}</h3>
               <p>{hotkey.does}</p>

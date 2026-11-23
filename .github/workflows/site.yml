@@ -29,6 +29,8 @@ jobs:
       - uses: pnpm/setup@731dfb6463bbd11c11fd0ee11fe00ed0e36d48a1 # v3.2.0
         with:
           runtime: node@26
+          # The next step is the only install, so a missing lockfile fails it.
+          install: false
       - name: Install
         run: pnpm install --frozen-lockfile
       - name: Build

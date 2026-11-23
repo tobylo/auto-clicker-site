@@ -1,10 +1,10 @@
 ---
-import { clicksPerSecond, links } from '../data/facts';
+import { clicksPerSecond, links, systems } from '../data/facts';
 ---
 
 <section class="hero wrap" id="top">
   <div class="copy">
-    <p class="label">&gt; Linux · Windows soon · Rust</p>
+    <p class="label">&gt; {[...systems, 'Rust'].join(' · ')}</p>
     <h1>Click.<br />Record.<br /><span>Replay.</span></h1>
     <p class="lead">
       An auto clicker with macro record and playback that lives in your tray. Its hotkeys work inside

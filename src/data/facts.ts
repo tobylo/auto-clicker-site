@@ -23,6 +23,8 @@ export type InstallLine = { command: string } | { remark: string };
 export interface Platform {
   id: string;
   label: string;
+  /** The operating system, as the page's headline names it. */
+  system: string;
   status: 'available' | 'soon';
   /** Who it is for, in a few words. */
   scope: string;
@@ -35,6 +37,7 @@ export const platforms: Platform[] = [
   {
     id: 'arch',
     label: 'Arch / CachyOS',
+    system: 'Linux',
     status: 'available',
     scope: 'CachyOS or Arch Linux, with Plasma, niri or Hyprland',
     lines: [
@@ -55,11 +58,15 @@ export const platforms: Platform[] = [
   {
     id: 'windows',
     label: 'Windows',
+    system: 'Windows',
     status: 'soon',
     scope: 'Windows 11',
     lines: [],
   },
 ];
+
+/** The systems the page names, each marked "soon" until it can be installed. */
+export const systems = platforms.map((p) => (p.status === 'soon' ? `${p.system} soon` : p.system));
 
 export interface Hotkey {
   key: string;
@@ -67,7 +74,10 @@ export interface Hotkey {
   does: string;
 }
 
-/** The default bindings; each is held with Ctrl+Shift. */
+/** The modifiers every default binding is held with. */
+export const hotkeyModifiers = 'Ctrl+Shift';
+
+/** The default bindings, each with hotkeyModifiers. */
 export const hotkeys: Hotkey[] = [
   { key: 'F6', name: 'Click', does: 'Start or stop: fast clicks, a held button, or a repeated key.' },
   { key: 'F7', name: 'Record', does: 'Mouse and keys with their timing. Press again to save.' },
