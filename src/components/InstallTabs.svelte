@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Platform } from '../data/facts';
+  import type { Platform } from '../data/program';
 
   interface Props {
     platforms: Platform[];

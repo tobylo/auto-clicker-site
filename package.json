@@ -4,9 +4,12 @@
   "type": "module",
   "packageManager": "pnpm@12.21.0",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
+    "facts": "node scripts/facts.mjs fetch",
+    "facts:pin": "node scripts/facts.mjs pin",
+    "dev": "node scripts/facts.mjs fetch && astro dev",
+    "build": "node scripts/facts.mjs fetch && astro build",
+    "preview": "astro preview",
+    "test": "node scripts/facts.mjs fetch && node --test tests/"
   },
   "dependencies": {
     "@astrojs/svelte": "9.1.6",

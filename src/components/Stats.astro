@@ -1,5 +1,5 @@
 ---
-import { figures } from '../data/facts';
+import { figures } from '../data/program';
 ---
 
 <section class="wrap stats" id="stats" aria-labelledby="stats-title">
@@ -10,7 +10,7 @@ import { figures } from '../data/facts';
   <dl>
     {
       figures.map((figure) => (
-        <div class="row" title={figure.measured}>
+        <div class="row" title={figure.detail}>
           <dt>{figure.label}</dt>
           <dd class:list={{ accent: figure.unit === '' }}>
             {figure.value}

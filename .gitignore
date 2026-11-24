@@ -3,3 +3,6 @@ dist/
 .astro/
 .env
 .env.*
+
+# The program's facts, fetched before each build (scripts/facts.mjs).
+src/data/facts.json
