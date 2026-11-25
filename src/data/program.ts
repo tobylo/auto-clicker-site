@@ -5,7 +5,7 @@
 // file of the wrong shape.
 
 import raw from './facts.json';
-import { clicksPerSecondOf, type Figure, type Hotkey, type PageLine, pageLines, parseFacts } from './validate';
+import { clicksPerSecondOf, countWord, type Figure, type Hotkey, type PageLine, pageLines, parseFacts } from './validate';
 
 export type { Figure, Hotkey };
 
@@ -59,6 +59,9 @@ export const hotkeyModifiers = facts.hotkeys.modifiers;
 
 /** The default bindings, each with hotkeyModifiers. */
 export const hotkeys: Hotkey[] = facts.hotkeys.bindings;
+
+/** How many default bindings there are, as a word. */
+export const hotkeyCount = countWord(hotkeys.length);
 
 export const figures: Figure[] = facts.figures;
 

@@ -1,12 +1,12 @@
 ---
-import { hotkeyModifiers, hotkeys } from '../data/program';
+import { hotkeyCount, hotkeyModifiers, hotkeys } from '../data/program';
 ---
 
 <section class="band" id="binds" aria-labelledby="binds-title">
   <div class="wrap row">
     <div class="intro">
       <p class="tag">// 01 — Binds</p>
-      <h2 id="binds-title">Three <br />keys.</h2>
+      <h2 id="binds-title">{hotkeyCount} <br />keys.</h2>
       <p class="hint">Hold {hotkeyModifiers}. Works in fullscreen games, and every key can be rebound.</p>
     </div>
     <ul class="tiles">

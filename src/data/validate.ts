@@ -116,7 +116,8 @@ function checkStatus(p: Problems, platform: Json, where: string) {
   const lines = Array.isArray(platform.lines) ? platform.lines : [];
   if (platform.status === 'available') {
     p.check(isText(platform.readme), `${where}: an available platform names its README heading (readme)`);
-    p.check(lines.some((line) => shaped(line, ['command'], ['guideOnly'])), `${where}: an available platform has commands`);
+    // A command the page shows: guide-only ones are left out of it.
+    p.check(lines.some((line) => shaped(line, ['command'])), `${where}: an available platform has a command the page shows`);
   } else if (platform.status === 'soon') {
     p.check(!('readme' in platform), `${where}: a platform that is soon has no README heading`);
     p.check(lines.length === 0, `${where}: a platform that is soon has no install lines`);
@@ -235,4 +236,13 @@ function wholeMsDividing1000(figure: Figure): number | undefined {
   const ms = Number(figure.value);
   if (!Number.isInteger(ms) || ms <= 0) return undefined;
   return 1000 % ms === 0 ? ms : undefined;
+}
+
+const WORDS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+
+/** `count` as a word, for headings such as "Three keys". */
+export function countWord(count: number): string {
+  const word = WORDS[count - 1];
+  if (word === undefined) throw new Error(`The page has no word for ${count}`);
+  return word;
 }

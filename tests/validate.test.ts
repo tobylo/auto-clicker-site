@@ -1,24 +1,29 @@
-// The facts file is accepted in its one shape only. The valid file is the
-// pinned one (src/data/facts.json, which `pnpm test` fetches first); each case
-// below breaks one thing in a copy of it.
+// The facts file is accepted in its one shape only. The pinned file
+// (src/data/facts.json, which `pnpm test` fetches first) must pass; each case
+// below breaks one thing in a copy of a fixed valid file (tests/fixtures,
+// the same as the program's), so a change to the pinned facts breaks none of
+// them.
 
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { test } from 'node:test';
 
-import { clicksPerSecondOf, type Figure, pageLines, parseFacts } from '../src/data/validate.ts';
+import { clicksPerSecondOf, countWord, type Figure, pageLines, parseFacts } from '../src/data/validate.ts';
 
-const pinned = JSON.parse(await readFile(new URL('../src/data/facts.json', import.meta.url), 'utf8'));
+const read = async (path: string) => JSON.parse(await readFile(new URL(path, import.meta.url), 'utf8'));
+const pinned = await read('../src/data/facts.json');
+const valid = await read('./fixtures/valid.json');
 
-/** A copy of the pinned facts after `change`. */
+/** A copy of the fixed valid facts after `change`. */
 function changed(change: (facts: any) => void): unknown {
-  const copy = structuredClone(pinned);
+  const copy = structuredClone(valid);
   change(copy);
   return copy;
 }
 
-test('accepts the pinned file', () => {
+test('accepts the pinned file and the fixed one', () => {
   assert.equal(parseFacts(pinned).version, 1);
+  assert.equal(parseFacts(valid).version, 1);
 });
 
 const broken: [string, (facts: any) => void, RegExp][] = [
@@ -27,6 +32,7 @@ const broken: [string, (facts: any) => void, RegExp][] = [
   ['an unknown status', (f) => (f.platforms[1].status = 'beta'), /status must be available or soon/],
   ['a soon platform with lines', (f) => (f.platforms[1].lines = [{ remark: 'x' }]), /soon has no install lines/],
   ['an available platform without its heading', (f) => delete f.platforms[0].readme, /names its README heading/],
+  ['an available platform whose commands are all left to the guide', (f) => (f.platforms[0].lines = [{ command: 'a', guideOnly: true }]), /has a command the page shows/],
   ['guideOnly false', (f) => (f.platforms[0].lines[0].guideOnly = false), /guideOnly may only be true/],
   ['a line with both kinds', (f) => (f.platforms[0].lines[0].remark = 'x'), /either \{command, guideOnly\?\} or \{remark\}/],
   ['a command over two lines', (f) => (f.platforms[0].lines[0].command = 'a\nb'), /command must be one line/],
@@ -74,4 +80,9 @@ test('works out clicks per second from the fastest interval', () => {
   for (const figures of [[], [figure('0')], [figure('3')], [figure('2.5')], [figure('10', 's')], [figure('ten')]]) {
     assert.throws(() => clicksPerSecondOf(figures), /fastest-interval figure/);
   }
+});
+
+test('says a count as a word', () => {
+  assert.equal(countWord(3), 'Three');
+  for (const count of [0, 10]) assert.throws(() => countWord(count), /no word for/);
 });
